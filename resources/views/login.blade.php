@@ -1,7 +1,6 @@
 @extends('layouts.main_layout')
 
 @section('content')
-
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-6 col-sm-8">
@@ -9,13 +8,13 @@
                 
                 <!-- logo -->
                 <div class="text-center p-3">
-                    <img src="assets/images/logo.png" alt="Notes logo">
+                    <img src="{{ asset('assets/images/logo.png') }}" alt="Notes logo">
                 </div>
 
                 <!-- form -->
                 <div class="row justify-content-center">
                     <div class="col-md-10 col-12">
-                        <form action="/loginSubmit" method="post" novalidate>
+                        <form action="/loginSubmit" method="post">
                             @csrf
                             <div class="mb-3">
                                 <label for="text_username" class="form-label">Username</label>
