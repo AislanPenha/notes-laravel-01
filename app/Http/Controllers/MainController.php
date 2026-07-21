@@ -84,6 +84,10 @@ class MainController extends Controller
     public function editNote($id) {
         // $id = $this->decryptId($id);                   Quando usava a função privada
         $id = Operations::decryptId($id); //  Agora usando o Service
+
+        if($id == null) {
+            return redirect()->route('home');
+        }
         // load note
         $note = Note::find($id);
         // show edit note view
@@ -116,6 +120,10 @@ class MainController extends Controller
         // descrypt note_id
         $id = Operations::decryptId($request->note_id);
 
+        if($id == null) {
+            return redirect()->route('home');
+        }
+
         // load note
         $note = Note::find($id);
 
@@ -132,6 +140,10 @@ class MainController extends Controller
         // $id = $this->decryptId($id);
         $id = Operations::decryptId($id);
         
+        if($id == null) {
+            return redirect()->route('home');
+        }
+
         // load note
         $note = Note::find($id);
 
@@ -143,6 +155,10 @@ class MainController extends Controller
         // check if $id is encrypted
         $id = Operations::decryptId($id);
 
+        if($id == null) {
+            return redirect()->route('home');
+        }
+        
         // load note
         $note = Note::find($id);
 
