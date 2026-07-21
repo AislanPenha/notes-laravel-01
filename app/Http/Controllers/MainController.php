@@ -155,6 +155,9 @@ class MainController extends Controller
 
         // 3. soft delete (property in model)
         $note->delete();
+
+        // 4. Erase o soft delete
+        // $note->forceDelete();
         
         // redirect to home
         return redirect()->route('home');
