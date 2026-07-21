@@ -4,6 +4,7 @@
 ## cd meu-projeto
 ## composer require laravel/sail --dev
 ## php artisan sail:install
+## edite no .env => não esqueçer SESSION_COOKIE=notes_session
 ## No application encryption key has been specified.
 ### ./vendor/bin/sail artisan key:generate
 
