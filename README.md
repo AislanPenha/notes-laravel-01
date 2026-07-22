@@ -1,52 +1,169 @@
+# 🚀 Criando um Projeto Laravel com Sail
 
-# Comando
-## composer create-project laravel/laravel meu-projeto
-## cd meu-projeto
-## composer require laravel/sail --dev
-## php artisan sail:install
-## edite no .env => não esqueçer SESSION_COOKIE=notes_session
-## No application encryption key has been specified.
-### ./vendor/bin/sail artisan key:generate
+## 1. Criar o projeto
 
-### ./vendor/bin/sail artisan migrate
+```bash
+composer create-project laravel/laravel meu-projeto
+cd meu-projeto
+```
 
-### Limpar os caches
-sail artisan config:clear
-sail artisan cache:clear
-sail artisan optimize:clear
+## 2. Instalar o Laravel Sail
 
+```bash
+composer require laravel/sail --dev
+php artisan sail:install
+```
 
-## Criar Controller
-### ./vendor/bin/sail artisan make:controller
+## 3. Configurar o arquivo `.env`
 
-### php artisan make:migration create_users_table
+Antes de iniciar o projeto, altere o nome do cookie de sessão para evitar conflitos com outros projetos Laravel.
 
-# TABELAS
-## USERS
------------------
-id
-username
-password
-last_login
-created_at
-updated_at
-deleted_at
+```env
+SESSION_COOKIE=notes_session
+```
 
-## NOTES
------------------
-id
-user_id
-title
-text
-created_at
-updated_at
-deleted_at
+## 4. Gerar a chave da aplicação
 
-### ./vendor/bin/sail artisan migrate
-### ./vendor/bin/sail artisan migrate:rollback
+Caso apareça a mensagem:
 
-### php artisan make:seeder UsersTableSeeder
+> No application encryption key has been specified.
 
-### php artisan make:model User
+Execute:
 
-### ./vendor/bin/sail artisan db:seed UsersTableSeeder
+```bash
+./vendor/bin/sail artisan key:generate
+```
+
+## 5. Iniciar os containers
+
+```bash
+./vendor/bin/sail up
+```
+
+> Para executar em segundo plano:
+
+```bash
+./vendor/bin/sail up -d
+```
+
+## 6. Executar as migrations
+
+```bash
+./vendor/bin/sail artisan migrate
+```
+
+---
+
+# 🧹 Limpeza de Cache
+
+Sempre que alterar configurações ou encontrar problemas de cache, execute:
+
+```bash
+./vendor/bin/sail artisan config:clear
+./vendor/bin/sail artisan cache:clear
+./vendor/bin/sail artisan optimize:clear
+```
+
+---
+
+# 📦 Criando Componentes
+
+## Criar um Controller
+
+```bash
+./vendor/bin/sail artisan make:controller NomeDoController
+```
+
+## Criar uma Migration
+
+```bash
+./vendor/bin/sail artisan make:migration create_users_table
+```
+
+## Criar um Model
+
+```bash
+./vendor/bin/sail artisan make:model User
+```
+
+## Criar um Seeder
+
+```bash
+./vendor/bin/sail artisan make:seeder UsersTableSeeder
+```
+
+---
+
+# 🗄️ Estrutura das Tabelas
+
+## Tabela `users`
+
+| Campo | Tipo |
+|--------|------|
+| id | bigint |
+| username | string |
+| password | string |
+| last_login | datetime |
+| created_at | timestamp |
+| updated_at | timestamp |
+| deleted_at | timestamp |
+
+---
+
+## Tabela `notes`
+
+| Campo | Tipo |
+|--------|------|
+| id | bigint |
+| user_id | bigint (FK) |
+| title | string |
+| text | text |
+| created_at | timestamp |
+| updated_at | timestamp |
+| deleted_at | timestamp |
+
+---
+
+# 🛠️ Comandos Úteis
+
+## Executar as migrations
+
+```bash
+./vendor/bin/sail artisan migrate
+```
+
+## Desfazer a última migration
+
+```bash
+./vendor/bin/sail artisan migrate:rollback
+```
+
+## Executar um seeder específico
+
+```bash
+./vendor/bin/sail artisan db:seed --class=UsersTableSeeder
+```
+
+---
+
+# 📋 Fluxo Resumido
+
+```text
+Criar projeto
+      ↓
+Instalar Sail
+      ↓
+Configurar .env
+      ↓
+Gerar APP_KEY
+      ↓
+Iniciar containers
+      ↓
+Executar migrations
+      ↓
+Criar Controllers, Models e Migrations
+      ↓
+Criar Seeders
+      ↓
+Popular o banco
+```
