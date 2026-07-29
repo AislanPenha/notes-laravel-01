@@ -17,14 +17,17 @@ php artisan sail:install
 ## 3. Configurar o arquivo `.env`
 
 Antes de iniciar o projeto, altere o nome do cookie de sessão para evitar conflitos com outros projetos Laravel.
-```bash
-./vendor/bin/sail artisan make:session-table
-```
 
 ```env
 SESSION_COOKIE=notes_session
+WWWUSER=1000
+WWWGROUP=1000
+```
+```bash
+./vendor/bin/sail artisan make:session-table
 ```
 execute as migrations.
+
 ## 4. Gerar a chave da aplicação
 
 Caso apareça a mensagem:
