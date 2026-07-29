@@ -144,6 +144,17 @@ Sempre que alterar configurações ou encontrar problemas de cache, execute:
 ./vendor/bin/sail artisan migrate:rollback
 ```
 
+## Desfaz todas migration
+
+```bash
+./vendor/bin/sail artisan migrate:reset
+```
+
+## Escutar quais migration serão executadas
+
+```bash
+./vendor/bin/sail artisan migrate --pretend
+
 ## Executar um seeder específico
 
 ```bash
